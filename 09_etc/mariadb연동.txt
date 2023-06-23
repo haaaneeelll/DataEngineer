@@ -1,0 +1,64 @@
+
+# 1. MariaDB 연동
+import mariadb
+
+user = "root"
+pw = "1234"
+
+
+con = mariadb.connect(host="localhost", user=user, password=pw, port=3306, database="exam")
+print("Database 연결 성공")
+
+# 2. 단일 레코드 조회
+with con.cursor() as cur:
+    sql = "select * from dept where deptno ={xxx}".format(xxx=10)
+    cur.execute(sql)
+    res = cur.fetchone()
+    print(res)
+
+xxx=10
+with con.cursor() as cur:
+    sql = f"select * from dept where deptno={xxx}"
+    cur.execute(sql)
+    res = cur.fetchone()
+    print(res)
+    
+    
+con.close()
+
+# 3. 멀티 레코드 조회
+with con.cursor() as cur:
+    cur.execute("select * from dept order by deptno")
+    res = cur.fetchall()  # list로 반환
+    for row in res:
+        print(row)
+        
+# 4. 저장        
+xxx=3
+yyy='개발부'
+zzz='서울'
+with con.cursor() as cur:
+    sql = f"insert into dept (deptno, dname, loc) values ({xxx}, '{yyy}', '{zzz}')"
+    print((sql))
+    cur.execute( sql)
+    print("저장된 레코드갯수:", cur.rowcount)
+    con.commit()
+    
+with con.cursor() as cur:
+    rows = [(11, "개발","서울"), (12, "개발","서울")]
+    cur.executemany("insert into dept (deptno, dname, loc) values  ( ?, ?, ? )", rows)
+    print("저장된 레코드갯수:", cur.rowcount)
+    con.commit()
+    
+# 5. 수정
+with con.cursor() as cur:
+    cur.execute( "update dept set dname = '{}', loc= '{}' "
+                 " where deptno = {}".format("개발부", "서울시", 1 ))
+    print("수정된 레코드갯수:", cur.rowcount)
+    con.commit()
+    
+# 6. 삭제
+with con.cursor() as cur:
+    cur.execute( "delete from dept where deptno = {}".format(2) )
+    print("삭제된 레코드갯수:", cur.rowcount)
+    con.commit()    

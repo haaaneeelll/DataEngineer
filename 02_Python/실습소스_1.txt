@@ -1,0 +1,319 @@
+
+### 자료형 ###
+
+# 1) 일반 자료형
+print("1.정수: ", 0)
+print("1.정수(10진수): ", 10)
+print("1.정수(2진수): ", 0b10)   # 2
+print("1.정수(8진수): ", 0o10)  # 8
+print("1.정수(16진수): ", 0x10) # 16
+print("1.정수(음수): ", -10)
+print("2.실수: ", 3.14)
+print("2.실수(지수표기법): ", 3e+5)
+print("3.논리: ", True)
+print("3.논리: ", False)
+print("4.None: ", None)
+
+
+# 2) 집합 자료형
+print("1. 문자열: ", "hello")
+print("1. 문자열: ", 'hello')
+print("1. 문자열: ", """hello""")
+print("1. 문자열: ", '''hello''')
+print("2. 리스트(list): ", [1, 2, 3, 4, 4, "hello"])
+print("3. 셋(set): ", {1, 2, 3, 4, 4, "hello"})
+print("4. 튜플(tuple): ", (1, 2, 3, 4, 4, "hello"))
+print("5. 딕트(dict): ", {"name": "홍길동", "age": 20})
+
+
+
+# 이스케이프 문자 (escape 문자)
+print("c:\\temp")
+print("Hello\nworld")
+print("Hello\tworld")
+print("\'")
+print("\"")
+
+
+
+### 변수 ###
+
+# 1) 기본
+num = 4
+name = "홍길동"
+address = "서울"
+height = 174.2
+isMarried = True
+email =["aa@daum.net","bb@google.com"]
+info ={
+    "핸드폰":["010", "011"],
+    "애완동물":["강아지","고양이"]
+}
+print(num)
+print(name)
+print(address)
+print(height)
+print(isMarried)
+print(email)
+print(info)
+
+# 2) 동시할당
+# 반드시 갯수가 일치해야 된다.
+name, age, address = "홍길동",20,"서울"
+print(name,age,address)
+
+# dummy variable ==> _(underscore) 이용
+a, b, _ = 10, 20, 30
+print(a, b)
+
+
+# 3) 변수 타입 체크
+a = 10
+b = 3.14
+c = True
+d = [10, 20, 30]
+e = (10, 20, 30)
+f = {10, 20, 30}
+g = {'key': 100}
+h = "hello"     # unicode string
+h2 = b"hello"   # byte string
+
+print(a, type(a)) 
+print(b, type(b)) 
+print(c, type(c)) 
+print(d, type(d)) 
+print(e, type(e)) 
+print(f, type(f)) 
+print(g, type(g)) 
+print(h, type(h)) 
+print(h2, type(h2))
+print(None, type(None)) 
+
+### 표준 출력 ###
+
+# 1) 기본 
+print("Hello")
+print(100, 200) 
+
+print(9, 8, sep=",") 
+
+print(9, 8, sep=",", end=" ")
+
+# 2) 포맷지정 출력
+
+# 1. 문자열 데이터 표현
+mesg = "이름:{}".format('홍길동')
+print(mesg)
+mesg = '이름:{0}'.format('홍길동')
+print(mesg)
+mesg = '이름:{0:5s}, 나이:{1}'.format('홍길동',20)
+print(mesg)
+
+
+# 2. 수치 데이터 표현
+mesg = '{0:f}'.format(123456789)
+print(mesg)
+
+mesg = '{0:.3f},{0:.9f}'.format(123.4567)
+print(mesg)
+
+mesg = '{0:,}'.format(123456789)
+print(mesg)
+
+# 3. key 사용
+mesg = '이름: {username}, 나이: {age}'.format(username='홍길동', age=20)
+print(mesg)
+
+# 4. unpacking - 문자열/리스트
+mesg = '{0}:{1}:{2}'.format(*'홍길동')
+print(mesg)  # 홍:길:동
+
+mesg = '{0}:{1}:{2}'.format(*['홍길동', '이순신', '강감찬'])
+print(mesg) # 홍길동:이순신:강감찬
+
+# 4. unpacking - dict
+person = {'username': '홍길동', 'age': 20}
+mesg = '이름: {username}, 나이: {age}'.format(**person)
+print(mesg)
+
+
+# 5. % 지정 방식
+print("이름: %s 나이: %d 신장: %.2f 결혼여부:%s 성별:%c"
+       % ("홍길동", 200, 178.5987, True, '남'))
+
+
+# 6. format string 방식
+name = "KyIN"
+age = 20
+
+print("이름:{name} 나이:{age}")            
+print(f"이름:{name} 나이:{age}")           
+print(f"이름:{name} 나이:{age+1}")                       
+print(f"이름:{name} 나이:{age > 30}")                 
+print(f"이름:{name.lower()} 나이:{age > 30}")      
+
+
+
+### 표준 입력 ###
+
+name = input("이름을 입력하시오\n")
+age = int(input("나이를 입력하시오.\n"))
+print("입력된 이름:{}".format(name))
+print("입력된 나:{}".format(age))
+
+
+### 연산자 ###
+
+# 1) 산술 연산자
+a = 10
+b = 3
+print(a+b)
+print(a-b)
+print(a*b)
+print(a/b)    # 3.3333333333333335
+print(a % b)  # 1  ,  Modulus
+print(a//b)   # 3  ,  Floor Division   소수점 버림
+print(a**b)   # square ( 제곱 )
+
+
+# 2) 대입 연산자
+
+n = 10
+n2 = 4
+n += n2
+print(n,n2) # 14 4
+n -= n2
+print(n,n2) # 10 4
+n *= n2
+print(n,n2) # 40 4
+n /= n2
+print(n,n2) # 10.0 4
+n //= n2
+print(n,n2) # 2.0 4
+n **= n2
+print(n,n2) # 16.0  4
+
+# 대입 연산자 심화
+a = b = c = 1
+name, age, address = "홍길동",20,"서울"
+print(name,age,address)
+
+v1, *v2 = [10,20,30]
+print(v1,v2)  # 10 [20, 30]
+
+v1,*v2={'a':100,'b':200 ,'c':300}
+print(v1,v2)  # a ['b', 'c']
+
+# 3) 비교 연산자 
+k = 10
+k2 = 5
+print( k == k2 )
+print( k != k2 )
+print( k > k2 )
+print( k >= k2 )
+print( k < k2 )
+print( k <= k2 )
+
+# None 비교
+xyz = None
+print( xyz is None ) # 권장
+
+# 4) 논리 연산자
+print(True and True)   # True
+print(True and False)  # False
+print(False and True)  # False
+print(False and False) # False
+print()
+print(True or True)    # True
+print(True or False)   # True
+print(False or True)   # True
+print(False or False)  # False
+print()
+print(not True)        # False
+print(not False)       # True
+
+
+# 논리 연산자 심화
+print("공백문자:", not "" ) # True
+print("0 문자:", not 0 )   # True
+print("None:", not None ) # True
+print("[]:", not [] )     # True
+print("():", not () )     # True
+print("{}:", not {} )     # True
+print()
+print("일반문자:", not "Hello" )  # False
+print("10 문자:", not 10 )       # False
+
+# 5) Bitwise  연산자
+a = 8    # 0000 1000
+b = 11   # 0000 1011
+
+c = a & b   # AND   8
+d = a | b   # OR    11
+e = a ^ b   # XOR   3
+f = a<<2   # shift   32
+
+print("AND:" , c ,  bin(c))
+print("OR:" , d ,   bin(d))
+print("XOR:" , e  , bin(e))
+print("shift:" , f, bin(f))
+
+
+# 6) 멤버쉽 연산자 ( in 연산자 )
+
+n = [10,9,8]
+result = 10 in n
+print("10포함 여부: ", result)
+
+n = (10,9,8)
+result = 10 in n
+print("10포함 여부: ", result)
+
+n = {10,9,8}
+result = 10 in n
+print("10포함 여부: ", result)
+
+n = {"name":"홍길동","age":20}
+result = "name" in n
+print("name 키포함 여부: ", result)
+
+### 일반 데이터 형변환 ###
+
+# 1. int 로 변환
+print( int(3.5) )    # 3
+print( int(-3.5) )   # -3
+print( int(True) )   # 1
+print( int(False) )  # 0
+print( int("123") )  # 123
+
+# 2. float 로 변환
+print( float(3) )                     # 3.0
+print( float(-3) )                    # -3.0
+print( float(True) )                  # 1.0
+print( float(False) )                 # 0.0
+print( float("123.34") )              # 123.34
+print( float("123") )                 # 123.0
+
+# 3. bool 로 변환
+print( bool(0) )     # False
+print( bool("") )    # False
+print( bool(None) )  # False
+print( bool([]) )    # False
+print( bool({}) )    # False
+print( bool() )      # False
+print()
+print( bool(10) )          # True
+print( bool("123") )       # True
+print( bool([10,20,30]) )  # True
+print( bool({"age":20}) )  # True
+print( bool(10,) )         # True
+
+# 4. str 로 변환
+print(str(123))   # "123"
+print(str(3.14))  # "3.14"
+print(str(True))  # "True"
+
+#########################################################################
+### 집합형 데이터 ###########################################################
+#########################################################################
+

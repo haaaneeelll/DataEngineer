@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+      // Data 관련 객체: 수치 객체
+
+      //1. 생성
+      let n = new Number(10);
+      let n2 = 10;
+      
+      let m = new Number(3.1357);
+      let m2 = 3.1357;
+
+      //2. 객체의 property와 method 확인,
+      // w3schools.com 확인
+      console.dir(m);
+     
+      
+      // 3. property와 method 사용
+      console.log(Number.MAX_VALUE);
+      console.log(Number.MIN_VALUE);
+      
+      // "10"--> 10
+      console.log(Number.parseInt("10")+10);
+      // "3.15" --> 3.15
+      console.log(Number.parseFloat("3.15")+10);
+      
+      // "hello" --> 숫자
+      console.log(Number.parseInt("hello")); // NaN
+      
+      // 실수값 --> 자릿수, 정수
+      let num = 5.56789;
+      console.log(num.toFixed()); // 6
+      console.log(num.toFixed(2)); //5.57
+
+      // NaN이냐?
+      console.log(Number.isNaN(123));
+      console.log(Number.isNaN("123"));
+      console.log(Number.isNaN(NaN));
+      console.log(Number.isNaN(""));
+
+      // 정수냐?
+      console.log(Number.isInteger(123));
+      console.log(Number.isInteger("123"));
+      console.log(Number.isInteger("Hello"));
+
+    </script>
+</head>
+<body>
+   
+</body>
+</html>

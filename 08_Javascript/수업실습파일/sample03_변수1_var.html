@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        // var 이용한 변수
+        var n;
+        console.log(n); // undefined
+        n = 10;
+        console.log(n); // 10
+        
+        var n=20; // 변수 선언 중복 가능
+        console.log(n); // 20
+        
+        
+        //참조형
+        var n=[10,20]
+        console.log(n); // [10,20]
+
+        //var 변수는 함수 스코프를 따른다. ==> 함수안에서 선언된 변수는 함수안에서만 사용 가능
+        function fun(){
+            var x = 100;
+        }
+        // console.log(x);
+
+        if(true){
+            var x2 = 200;
+        }
+        console.log(x2);  // 함수 블럭이 아니기 때문에 사용 가능
+
+
+        // 해결: 함수밖에서 선언
+        var x = 1000;
+        function fun2(){
+        }
+        console.log(x);
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

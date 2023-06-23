@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+      function kkk(){
+        var p = document.getElementById("x"); // P태그 객체
+        console.dir(p);
+        console.log(p.innerHTML);
+        console.log(p.innerText);
+
+        var p = document.getElementById("x").innerText;  // 문자열, 메서드 체인
+        console.log(p);
+        //////////////////////////////////////
+        var x = document.querySelector("#x");
+        console.log(x,  x.innerText);
+
+        var x = document.querySelector(".y");
+        console.log(x,  x.innerText);
+
+        var x = document.querySelectorAll("p"); // 반환은 Nodelist(배열)
+        console.log(x,x[0], x[1], x[0].innerText, x[1].innerText);
+      }
+      function value_change(){
+       
+        // var x = document.querySelector(".y");
+        // x.innerText="홍길동";
+        
+        //document.querySelector(".y").innerText="홍길동";
+
+        document.querySelector(".y").innerHTML="<h1>홍길동</h1>";
+      }
+   </script>
+</head>
+<body onload="kkk()">
+
+   <p id="x"><span>Hello</span></p>
+   <p class="y">world</p>
+   <button onclick="value_change()">값변경</button>
+ 
+</body>
+</html>

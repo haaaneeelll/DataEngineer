@@ -1,0 +1,159 @@
+
+## 1. 정렬
+'''
+   DataFrame 정렬
+
+   1. 정렬
+      df.sort_values(by=값, ascending=True, inplace=False, ignore_index=False, kind="quicksort", na_position="last")
+
+   2. 행 라벨 및 컬럼 라벨 정렬
+      new_df = df.sort_index(axis=0|1)
+
+'''
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+
+df = sns.load_dataset("mpg")
+print("1. DataFrame")
+df = df.head(10)
+print(df)
+
+## 2. DataFrame의 기술통계관련 함수
+'''
+  1. 최대(소)값         ==>  df.max(), df.min()
+     누적최대(소)값,     ==>  df.cummax(), df.cummin()
+      최대(소)값label   ==>  df.idxmax(), df.idxmin()
+  2. (누적)합계         ==>  df.sum(), df.cumsum()
+      평균              ==>  df.mean()
+      중앙값            ==>  df.median()
+      (누적)곱          ==>  df.prod(), df.cumprod()
+  3. 사분위             ==>  df.quantile()
+     분산               ==>  df.var()
+      표준편차           ==>  df.std()
+  4. count(갯수)         ==>  df.count()
+  5. 통합 통계           ==>  df.describe()
+
+'''
+import  pandas as pd
+import numpy as np
+
+df = pd.DataFrame({"col1" : [4 ,6, 9, 5, 15],
+                   "col2" : [16, 8, np.nan, 6, 6],
+                   "col3" : [10, 11, 12, 12, 12]},
+                    index = list("ABCDE"))
+print(df)
+
+## 3. DataFrame의 기본 함수
+'''
+   1. 값 변경                                  ==>  df.replace()
+   2. 컬럼명 및 인덱스명 변경                     ==> df.rename(columns|index)
+   3. 모든(특정) 컬럼(행)값의 참/거짓 여부          ==>  df.any() , df.all()
+   4. 중복조회 및 제거                           ==>  df.duplicated(),  df.drop_duplicates()
+
+   5. 임의의 함수 적용 ==> df.apply(함수, axis=0|1)
+      임의의 함수를 한번에 DataFrame의 행과 열에 적용.
+
+   6. 문자열 이용한 연산  === > df.eval('expr:str', inplace=False)
+
+   7. 값이 있으면 True, 아니면 False ==> df.isin(집합형)
+    
+    8. unique한 값의 갯수 ==> df.nunique(dropna=True) 
+                            dropna=False 면 nan 포함해서 갯수 반환
+'''
+
+df = pd.DataFrame({ "a" : [0 ,10, 100],
+                    "b" : [2, 20, 200],
+                    "c" : [3, 30, 300]},
+                    index = list('ABC'))
+
+print("1. DataFrame")
+print(df)
+
+df = pd.DataFrame({"k1":['one']*3 + ['two']*4,
+                  "k2":[1,1,2,3,3,4,4] })
+print(df)
+
+
+df = pd.DataFrame({"국어":[50,60,70,80,90],"수학":[100,100,100,100,100]})
+print(df)
+
+df = pd.DataFrame({ "col1" : [1 ,2, 2, None, 1],
+                    "col2" : [2, 3, 2, 2, np.nan],
+                    "col3" : [ np.nan, 3, 2, 3, 3],
+                    "col4" : [ np.nan, np.nan, np.nan, np.nan, np.nan]},
+                    index = [1, 2, 3, 4, 5])
+print(df)
+
+## 4. Series 및 DataFrame 의 기술통계관련 함수
+'''
+
+  1. 최대(소)값         ==>  df[[컬럼,컬럼2]].max(), df[[컬럼,컬럼2]].min()
+     누적최대(소)값,     ==>  df[[컬럼,컬럼2]].cummax(), df[[컬럼,컬럼2]].cummin()
+      최대(소)값label  ==>  df[[컬럼,컬럼2]].idxmax(), df[[컬럼,컬럼2]].idxmin()
+  2. (누적)합계         ==>  df[[컬럼,컬럼2]].sum(), df[[컬럼,컬럼2]].cumsum()
+      평균             ==>  df[[컬럼,컬럼2]].mean()
+      중앙값            ==>  df[[컬럼,컬럼2]].median()
+      (누적)곱          ==>  df[[컬럼,컬럼2]].prod(), df[[컬럼,컬럼2]].cumprod()
+  3. 사분위             ==>  df[[컬럼,컬럼2]].quantile()
+     분산               ==>  df[[컬럼,컬럼2]].var()
+      표준편차           ==>  df[[컬럼,컬럼2]].std()
+  4. count(갯수)         ==>  df[[컬럼,컬럼2]].count()
+  5. 통합 통계           ==>  df[[컬럼,컬럼2]].describe()
+
+'''
+df = pd.DataFrame({"col1" : [4 ,6, 9, 5, 15],
+                   "col2" : [16, 8, np.nan, 6, 6],
+                   "col3" : [10, 11, 12, 12, 12]},
+                    index = list("ABCDE"))
+print(df)
+
+## 5. Series 및 DataFrame 의 기본 함수
+'''
+   1. 값 변경                                  ==>  df[컬럼].replace()
+   2. 컬럼명 및 인덱스명 변경                     ==> dfdf[컬럼].rename()
+   3. 모든(특정) 컬럼(행)값의 참/거짓 여부          ==>  df[컬럼].any() , df[컬럼].all()
+   4. 중복조회 및 제거                           ==>  df[컬럼].duplicated(),  df[컬럼].drop_duplicates()
+   
+   5. 임의의 함수 적용 ==> df[컬럼].apply(함수)
+ 
+   6. 범위에 포함되면 True, 아니면 False ==> df[컬럼].between(start, end)
+   7. 값이 있으면 True, 아니면 False ==> df[컬럼].isin(집합형)
+
+
+   8. unique한 값 리스트 반환 :  df[컬럼].unique()
+      NaN 제외한 unique한 값 갯수 반환 :  df[컬럼].nunique(dropna=True)
+      
+
+   9.  NaN 제외한 값 빈도수 반환 :  df[컬럼].value_counts()
+   
+   10. df["컬럼명"].str.문자열함수 
+     ==> numpy의 np.char.문자열함수 기능
+'''
+df = pd.DataFrame({ "a" : [0 ,10, 100],
+                    "b" : [2, 20, 200],
+                    "c" : [3, 30, 300]},
+                    index = list('ABC'))
+print(df)
+
+
+df = pd.DataFrame({ "a" : [0 ,10, 100],
+                    "b" : [2, 20, 200],
+                    "c" : [3, 30, 300]},
+                    index = list('ABC'))
+print(df)
+
+
+df = pd.DataFrame(data={'동물': ['cat', 'penguin', 'dog',
+                                   'spider', 'snake'],
+                        '다리갯수': [4, 2, 4, 8, np.nan]})
+print(df)
+
+
+info={"name":["Hello","Happy","Cat"],
+      "age":[18,31, 33],
+      "birthday":['1920/09/28','1910/03/26','2020/03/26']}
+hero = pd.DataFrame(info)
+print(hero)
+

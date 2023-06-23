@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+       var httpRequest;
+       function req(){
+        // 1. 객체 생성
+          httpRequest = new XMLHttpRequest();
+         
+          console.dir(httpRequest);
+
+          //2. 응답시 처리할 수 있는 콜백함수 호출하는 이벤트 핸들러 등록
+          httpRequest.onreadystatechange= responseFun;
+
+          //3. url 정보 및 추가 정보 설정
+          httpRequest.open("get", "https://reqres.in/api/users/2");
+
+          //4. 요청
+          httpRequest.send(null);  // get 방식인 경우는 null 지정
+       }
+   
+       function responseFun(){
+          // 성공인 경우에만 처리
+          if(httpRequest.readyState==4 &&  httpRequest.status==200){
+             var data = httpRequest.responseText;
+             console.log(data, typeof data);
+
+             var jsonData = JSON.parse(data);
+             console.log(jsonData, typeof jsonData);
+
+              var id = jsonData.data.id;
+              var email = jsonData.data.email;
+              var first_name = jsonData.data.first_name;
+              var last_name = jsonData.data.last_name;
+              var avatar = jsonData.data.avatar;
+              console.log(id, email, first_name, last_name, avatar);
+
+              var table = `<table>
+                             <tr>
+                               <th>id</th>
+                               <th>email</th>
+                               <th>first_name</th>
+                               <th>last_name</th>
+                               <th>avatar</th>
+                             </tr> 
+                             <tr>
+                                <td>${id}</td>
+                                <td>${email}</td>
+                                <td>${first_name}</td>
+                                <td>${last_name}</td>
+                                <td><img src="${avatar}" width="100" height="100"></td>
+                              </tr>
+                           </table>`;  
+              
+              document.querySelector("#result").innerHTML=table;
+          }
+       }
+
+       
+   </script>
+</head>
+<body>
+ <button onclick="req()">reqres.in</button>
+ <div id="result"></div>
+</body>
+</html>

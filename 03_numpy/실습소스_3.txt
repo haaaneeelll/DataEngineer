@@ -1,0 +1,99 @@
+####################################################
+### 벡터연산
+
+# 1. 기본 파이썬 연산
+print("1. 파이썬의 리스트 + 리스트")
+print([10,20,30]+[10,20,30])  #[10, 20, 30, 10, 20, 30]
+
+print("2. 기본 파이썬의 리스트 + 스칼라")
+# print([10,20,30] + 2)  # TypeError: can only concatenate list (not "int") to list
+print([10,20,30] * 3)  # [10, 20, 30, 10, 20, 30, 10, 20, 30]
+
+##############################################################
+# 2. 백터 + 벡터 ==> 요소간 연산, 반드시 shape 일치해야 된다.
+arr1D_1 = np.array([10,20,30])
+arr1D_2 = np.array([5,4,3])
+print("3. numpy의 벡터간 연산 처리")
+print(arr1D_1 + arr1D_2)  # [15 24 33]
+print(arr1D_1 - arr1D_2)  # [ 5 16 27]
+print(arr1D_1 * arr1D_2)  # [50 80 90]
+print(arr1D_1 / arr1D_2)  # [ 2.  5. 10.]
+
+# 3. 백터 + 스칼라 ==> 자동으로 브로드캐스팅 되어 연산됨.
+arr1D_1 = np.array([10,20,30])
+print("4. numpy의 벡터 + 스칼라 연산 처리")
+print(arr1D_1 + 2)  # [12 22 32]
+print(arr1D_1 - 2)  # [ 8 18 28]
+print(arr1D_1 * 2)  # [20 40 60]
+print(arr1D_1 / 2)  # [ 5. 10. 15.]
+
+# 4. 비교 연산도 벡터화 가능
+print("5. 벡터의 비교 연산처리1: ", arr1D_1%3 == 0) # [False False  True]
+print("5. 벡터의 비교 연산처리2: ", arr1D_1 > 15) # [False  True  True]
+print("5. 벡터의 비교 연산처리3: ", (arr1D_1 > 15) & ( arr1D_1%6 == 0)) # [False False  True]
+
+
+##############################################################
+# 색인
+
+# 1. 1차원 색인
+# 1) fancy 색인
+import numpy as np
+
+data = np.arange(10) * 100
+print("1. original: ", data) # [  0 100 200 300 400 500 600 700 800 900]
+print("2. data[[1,3,5]]: ", data[[1,3,5]]) # [100 300 500]
+print("3. data[[8,1,5]]: ", data[[8,1,5]]) # [800 100 500]
+
+# 2) boolean 색인
+import numpy as np
+
+data = np.array([1,2,3,4,5])
+print("1. original: " , data)
+print("2. 벡터연산,  data%2==0: " , data%2==0) # [False  True False  True False]
+print("3. boolean 색인, [True,True,True,True,False]: ",data[[True,True,True,True,False]]) # [1 2 3 4]
+print("4. boolean 색인 활용,data[data%2==0]: ",data[data%2==0])  # [2 4]
+print("5. boolean 색인 활용,data[data > 3 ]: ",data[data > 3])  # [4 5]
+print("6. boolean 색인의 & 연산자: " , data[(data%2==0) & (data >2)]) # [4]
+print("7. boolean 색인의 | 연산자 " , data[(data%2!=0) | (data < 4)]) # [1 2 3 5]
+
+
+# 2. 2차원 색인
+
+# 1) 인덱싱 및 슬라이싱
+arr = np.array([[1,2,3],[10,20,30],[100,200,300],[1000,2000,3000]])
+print("1. original: ", arr)  
+print("2. 1행만 반환1",    arr[0]) 
+print("2. 1행만 반환2",    arr[0,...])  
+print("3. 마지막 행만 반환",    arr[-1])  
+
+print("3. 1행의 1열 반환 " , arr[0,1])  
+print("4. 1행의 마지막 열 반환 " ,arr[0, -1]) 
+print("5. 1행의 2열이후 반환 " ,arr[0, 1:]) 
+
+print("6. 1열만 반환1 " , arr[:, 0])  
+print("6. 1열만 반환2 " , arr[..., 0]) 
+print("7. 2열이후 반환 " , arr[:, 1:]) 
+
+print("8. 2행이후 2열이후 반환 " , arr[1:, 1:])  
+
+# 2) fancy 색인
+arr = np.array([[1,2,3],[10,20,30],[100,200,300]])
+print("1. original: ", arr) 
+print("2. 1행과 3행만 반환", arr[[0, 2]])  
+
+print("3. 1행과 3행에서 2열만 반환: ", arr[[0, 2], [1]]) 
+print("4. 1행과 3행에서 2열 이후 반환", arr[[0, 2], 1:])  
+print("5. 2열과 3열만 반환", arr[:, [1, 2]])  
+
+# 3) boolean 색인
+arr = np.array([[1,2,3],[10,20,30],[100,200,300]])
+print("1. original: ", arr) 
+print("2. arr%2==0: ", arr%2==0) 
+print("3. arr[arr%2==0]: ", arr[arr%2==0])  
+print("4. arr[(arr%2!=0) | (arr < 100)] " , arr[(arr%2!=0) | (arr < 100)])
+
+
+## 슬라이싱 / fancy / boolean 색인 이용한 값 변경
+
+

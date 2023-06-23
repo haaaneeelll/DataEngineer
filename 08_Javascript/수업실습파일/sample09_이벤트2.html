@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+      function fun(){
+        console.log("fun");
+        console.log("이벤트 객체", event);
+        /*
+           -중요
+           event.preventDefault();  ==> 무조건 동작되는 기능(submit, a href)을 방지
+           event.stopPropagation(); ==> 이벤트 전파 방지
+
+        */
+      }
+      function fun2(){
+        alert("fun2");
+        event.preventDefault();  // 기본동작 방지
+      }
+
+      function a(){
+        console.log("a");
+      }
+      function b(){
+        console.log("b");
+        event.stopPropagation(); // 이벤트 전파 방지
+      }
+    </script>
+</head>
+<body>
+  <button onclick="fun()">OK</button>
+  <form action="sample08_함수4.html" onsubmit="fun2()">
+		이름1 <input type="text" name="username" ><br>
+		나이 <input type="text" name="age" ><br>
+		<input type="submit" value="전송1">
+	</form>  
+
+  <div style="background-color: aqua;" onclick="a()">
+    a
+    <div style="background-color: blueviolet;" onclick="b()">
+      b
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+     function chk(){
+
+        var all = document.querySelector("#all").checked;
+        
+        var sports = document.querySelectorAll(".sport");
+        for (var s of sports) {
+            s.checked = all;
+        }
+     }
+       
+   </script>
+</head>
+<body>
+   전체선택:<input type="checkbox" onclick="chk()" id="all">
+   <hr>
+   <input type="checkbox" class="sport">야구<br>
+   <input type="checkbox" class="sport">축구<br>
+   <input type="checkbox" class="sport">농구<br>
+
+</body>
+</html>

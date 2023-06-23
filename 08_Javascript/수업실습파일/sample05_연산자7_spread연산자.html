@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+   // 7) spread 연산자 
+   // 문법:     ...배열|JSON  ==> 지정된 배열을 펼치는 효과로 동작됨.
+
+      var n = [10,20,30];
+
+      //가. 배열 복사
+      var n2 = [...n];
+      console.log(n, n2);
+
+      //나. 특정 배열(x)에 다른 배열(n) 삽입
+      var x = [1,2,3];
+      var n2 = [...n, ...x]
+      console.log(n2);
+
+      //다. 기본 배열에 특정값 추가
+      var x = [1,2,3]; 
+      var n2 = [...x, 1000,2000] 
+      console.log(n2);
+      
+      //라. 문자열 펼침
+      var n2 =[..."hello"];
+      console.log(n2);
+
+    </script>
+</head>
+<body>
+    console.log()
+</body>
+</html>

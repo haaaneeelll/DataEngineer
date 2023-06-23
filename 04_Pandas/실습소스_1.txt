@@ -1,0 +1,102 @@
+####################################################
+### Pandas
+####################################################
+
+
+####################################################
+#### 1. DataFrame 생성 방법
+'''
+   DataFrame 생성 방법
+
+   1. dict 이용
+     df = pd.DataFrame(dict)
+
+   2. 중첩 리스트 이용
+     df = pd.DataFrame(중첩리스트, index=[], columns=[])
+
+   3. np.Series(리스트) 이용
+      - df = pd.DataFrame([series, series,....])
+
+      - (하나의) Series는 DataFrame으로 변경 가능
+         df = series.to_frame(이름)
+
+'''
+import pandas as pd
+
+
+# 1. dict 이용 
+print("1. dict 이용한 DataFrame 생성")
+df = pd.DataFrame({"col1" : [4 ,5, 6],
+                   "col2" : [7, 8, 9],
+                   "col3" : [10, 11, 12]})
+print(df)
+
+# 2. 중첩 리스트 이용한 DataFrame 생성 => ndarray도 가능
+print("1. 중첩 리스트 이용")
+df = pd.DataFrame([[4, 7, 10],[5, 8, 11],[6, 9, 12]],
+                  index=[1, 2, 3],
+                  columns=['col1', 'col2', 'col3'])
+print(df)
+
+# 3.  DataFrame 생성 - Series 사용
+print("3. DataFrame 생성")
+name =     pd.Series(["유관순","안중근"])
+age =      pd.Series([18,31])
+birthday = pd.Series(['1920/09/28','1910/03/26'])
+
+hero = pd.DataFrame([name,age,birthday])
+hero.columns =["hero1", "hero2"]
+hero.index =["이름","나이","생일"]
+print(hero)
+print(hero.T)
+
+####################################################
+#### 2. 인덱스 관리
+
+'''
+
+    인덱스(index) 변경
+     - DataFrame의 기존컬럼을 index로 변경
+     - inplace=True|False 에 따라서 복사여부 결정
+     문법:
+           df.set_index(기존컬럼, inplace=True|False)
+
+           df.reset_index( drop=False, inplace=True ) # 기존 index를 컬럼으로 변경하고 새로운 index 생성
+           df.reset_index( drop=True, inplace=True ) # 기존 index를 삭제하고 새로운 index 생성
+'''
+
+df = pd.DataFrame({    "date":['2021','2022'],
+                       "City": ["Seoul", "Seoul"],
+                       "Temperature": [32, 34]
+                       })
+print("1. 원본 DataFrame")
+print(df)
+
+# 1) 기존 컬럼을 인덱스로 변경
+print("기존 컬럼을 인덱스로 변경")
+df.set_index('date', inplace=True)
+print(df)
+
+
+# 2) 새로운 인덱스로 변경
+print("새로운 인덱스로 변경")
+# df.reset_index(inplace=True)           # 기존 인덱스를 컬럼으로 변경하고 새로운 인덱스 생성
+df.reset_index(inplace=True, drop=True)  # 기존 인덱스를 삭제하고 새로운 인덱스 생성
+print(df)
+
+# 3) index 재배치
+new_df = df.reindex(index=list("ABCDE"))
+print("2. index 재배치")
+print(new_df)
+
+# 4) df병합시 기존 index값이 중복발생 ==> ignore_index=True 로 index값을 재설정
+df1 = pd.DataFrame({'a':[12,2]},
+                   index=[1,2])
+df2 = pd.DataFrame({'a':[120,20]},
+                   index=[1,2])
+
+new_df = pd.concat([df1, df2])
+print(new_df)
+new_df = pd.concat([df1, df2], ignore_index=True)
+print(new_df)
+

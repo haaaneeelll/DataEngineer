@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+      // Data 관련 객체: Array 객체
+   
+       let x =[4,5,6,1,2,3,9,7];
+     
+       //1. 거꾸로 : 자신이 변경됨.
+       console.log(x.reverse()); //  [7, 9, 3, 2, 1, 6, 5, 4]
+       console.log(x);
+       
+       //2. 부분배열 얻기
+       console.log(x.slice(0,4)); // 0~ 3 [7, 9, 3, 2]
+       
+       //3. 특정값의 위치
+       console.log(x.indexOf(2)); // 3
+
+       //4. 정렬 - 오름차순
+       console.log(x.sort()); // [1, 2, 3, 4, 5, 6, 7, 9]
+
+       let x2 =[14,25,6,11,2,3,93,7];
+       console.log(x2.sort(function(n,n2){
+           return n - n2;  // 오름차순
+       }));
+
+       console.log(x2.sort(function(n,n2){
+           return n2 - n;  // 내림차순
+       }));
+
+       // join ==> 배열에 저장된 문자열 합쳐서 하나의 값으로 반환 
+       const fruits = ["Banana", "Orange", "Apple", "Mango"];
+       let text = fruits.join(" ");
+       console.log(text);
+    </script>
+</head>
+<body>
+   
+</body>
+</html>

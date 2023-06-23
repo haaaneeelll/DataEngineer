@@ -1,0 +1,9 @@
+12c 부터는 클라우드 환경이라 scott 앞에 c## 을 붙여줘야 하는데.
+이거 안붙여도 동작하도록 사전 명령어 하나 실행해주면 될 듯 합니다.
+SQL> ALTER SESSION SET "_oracle_script"=true;
+패스워드는 대소문자 구별이 됩니다.(소문자로 하면 안될 수 있음)
+
+그리고 scott.sql 안의 스크립트 중에 to_date('13-JUL-87') 부분이 있는데
+오류 안나려면 하나 더 수행해 주세요.
+ALTER SESSION SET nls_date_language='american';
+ALTER SESSION SET nls_date_format='dd-MON-rr';

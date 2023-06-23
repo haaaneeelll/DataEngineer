@@ -1,0 +1,124 @@
+#########################################################################
+### 제어문 ###########################################################
+#########################################################################
+
+
+# 1. 단일 if문
+print("1")
+if 3==4:
+    print("2")
+    print("3")
+    print("4")
+print("5")
+print()
+
+# 1. 단일 if 문2
+if 3 == 3: print("True")
+print("-------------------------")
+
+# 2. if ~ else 문
+n = int(input("정수입력"))
+if n%2==0:
+    print("짝수")
+else:
+    print("홀수")
+print("end")
+
+# in 리스트 활용
+pocket = ['paper','card','tel']
+if 'tel' in pocket:
+    print("tel")
+else:
+    print("None")
+print("-------------------------")
+
+# 3. 다중 if ~ else 문
+n = int(input("점수입력"))
+if n>90:
+    print("A 학점")
+elif n>80:
+        print("B 학점")
+elif n>70:
+        print("C 학점")
+else:
+    print("F 학점")
+print("end")
+
+print("-------------------------")
+
+# 4. 3항 연산자
+jumsu = int(input('점수-->'))
+
+res = '합격' if jumsu >= 60 else '불합격'
+print(res)
+
+# 5. 중첩 3항 연산자
+n = 4
+m = "Hello" if n > 10 else "Goodbye" if n > 5 else "Good day"
+print(m) # Good day
+
+#############################################################
+#############################################################
+# 1. 일정횟수만큼만 반복처리
+for _ in "hello":
+    print("A", end=" ")
+print()
+
+for _ in range(5) :
+    print("A", end=" ")
+print()
+
+# 2. 집합형 데이터값 반복처리
+# 1) 문자열 반복
+for x in "Hello":
+    print(x, end= " ") # H e l l o
+print()
+
+# 2) list 반복
+for x in [10,20,30,40]:
+    print(x, end=" ") # 10 20 30 40
+print()
+
+# 3) 반복횟수 조회
+datas = ['a', 'b', 'c']
+for idx, value in enumerate(datas):
+    print(idx, value, end=" ")         # 0 a 1 b 2 c , 순서와 값이 차례대로 출력됨
+print()
+
+# 4) dict 반복
+soft = {'java':'웹용', 'python':'만능언어', 'oracle':'db처리'}
+for key, value in soft.items():
+    print(key + ':  ' + value)
+print()
+
+# break, continue , else 문
+datas = [1, 2, 3, 4, 5]
+print("-------------------------------------")
+for i in datas:
+    if i == 3: continue
+    if i == 4: break
+    print(i, end=' ')
+else:   # 정상적인 반복문 종료시 실행됨
+    print("정상종료")
+print("end")
+
+#####################################################################
+###### list comprehension 정리
+#####################################################################
+
+#####################################################################
+###### dict comprehension 정리
+#####################################################################
+
+#####################################################################
+###### generator comprehension 정리
+#####################################################################
+
+# while반복문
+a = 1
+while a <= 5:
+    print(a, end=' ')
+    a += 1
+else:
+    print("정상종료")
+print("\nend")

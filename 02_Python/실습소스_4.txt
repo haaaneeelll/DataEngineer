@@ -1,0 +1,62 @@
+#########################################################################
+### 함수 ###########################################################
+#########################################################################
+
+
+# 빌트인 함수
+print("1. 합계:", sum([1,2,3,4]))
+print("2. 평균:", sum([1,2,3,4])/len([1,2,3,4]))
+print("3. 리스트 최대값, 최소값:", max([1,2,3,4]), min([1,2,3,4]))
+print("4. 딕셔너리 최대값", max({10:'aaa',4:'bbb',100:'ccc'})) #100
+print("5. 딕셔너리 최소값", min({10:'aaa',4:'bbb',100:'ccc'})) #4
+print("6. 절대값:", abs(-100))
+print("7. 아스키코드값:", chr(65), chr(97))
+print("8. 몫과 나머지:", divmod(10,3))
+print("9. 반올림:",  round(4.67))  # 소수점 0 자리 반올림, 즉 정수 반올림
+print("10. 반올림:",  round(4.67, 1)) # 소수점 1자리 반올림
+
+# zip 함수
+x=['name',"age", "address"]
+y=["홍길동", 20, "서울"]
+print("12. zip:",list(zip(x,y))) #[('name', '홍길동'), ('age', 20), ('address', '서울')]
+print("13. zip:",dict(zip(x,y)))
+
+# all, any  ==> 전부 또는 일부가 맞으면 True/False
+b_list = [True, 1, False]
+print(all(b_list))          #iterable data들 중 모두 참이면 참
+print(all([1,1,0]))          #iterable data들 중 모두 참이면 참
+print(any(b_list))
+
+# filter 함수 ==> 내장된 함수에서 반환된 값이 참인 경우만 반환
+
+
+# map 함수 ==> 내장된 함수에서 다른 함수적용후 반환
+
+#########################################
+# 랜덤함수
+import random
+# help(random)
+print(dir(random))
+
+
+#1. randint(a, b)  # a <= N <= b. Alias for randrange(a, b+1).
+n = random.randint(1, 7)
+print("1. randint:", n)
+
+# 2. random()  # 0 ~ 1 사이의 랜덤 실수
+n = random.random()
+print("2. random:", n)
+
+# 3. randrange(a, b)  #a <= N < b
+n = random.randrange(1,7)
+print("3. randrange:", n)
+
+# 4. shuffle(x)
+random.seed(42)
+x = ['a','b','c']
+random.shuffle(x)
+print("4. shuffle:", x)
+
+# 5. choice(x)
+print("5. choice:", random.choice(x))
+

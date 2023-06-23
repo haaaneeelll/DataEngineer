@@ -1,0 +1,380 @@
+##############################################################
+##### 얕은복사 및 깊은복사 정리
+##############################################################
+
+
+##############################################################
+# 병합
+'''
+   다차원 열병합 ==> 수평축을 기준으로 열 병합
+
+   1. np.hstack((arr, arr2)) ==> 수평(horizontal)방향으로 병합
+   2. np.concatenate((arr,arr2), axis=1 ) ==> axis=1인 컬럼방향으로 병합
+   3. np.column_stack((arr, arr2)) ==> 컬럼(column)방향으로 병합
+
+'''
+import numpy as np
+
+arr = np.arange(9).reshape(3,3)
+arr2 = arr * 2
+column_merge = np.hstack((arr,arr2))
+column_merge2 = np.concatenate((arr,arr2) , axis=1)
+column_merge3= np.column_stack((arr, arr2))
+
+'''
+   다차원 행병합 ==> 수직축을 기준으로 행 병합
+
+   1. np.vstack((arr, arr2)) ==> 수직(vertical)방향으로 병합
+   2. np.concatenate((arr,arr2), axis=0 ) ==> axis=0인 행방향으로 병합
+   3. np.row_stack((arr, arr2)) ==> 행(row)방향으로 병합
+
+'''
+import numpy as np
+
+arr = np.arange(9).reshape(3,3)
+arr2 = arr * 2
+row_merge = np.vstack((arr,arr2))
+row_merge2 = np.concatenate((arr,arr2) , axis=0)
+row_merge3= np.row_stack((arr, arr2))
+print("1. vstack(튜플): \n",row_merge)
+
+'''
+   다차원 열분할 ==> 수평축을 기준으로 열 분할
+
+   1. np.hsplit(arr, n) ==> 수평(horizontal)방향으로 n개 분할
+   3. np.split(arr, n , axis=1) ==> 컬럼(column)방향으로 n개 분할
+
+'''
+arr = np.arange(12).reshape(3, 4)
+# 1. 열 분할
+column_split, column_split2 = np.hsplit(arr, 2)
+print("1. column_split ", column_split)
+print("1. column_split2 ", column_split2)
+
+'''
+   다차원 행분할 ==> 수직축을 기준으로 행 분할
+
+   1. np.vsplit(arr, n) ==> 수직(vertical)방향으로 n개 분할
+   3. np.split(arr, n , axis=0) ==> 행(row)방향으로 n개 분할
+
+'''
+arr = np.arange(12).reshape(3, 4)
+# 2. 행분할
+row_split,row_split2, row_split3 = np.vsplit(arr, 3)
+print("1. vsplit(arr,3): ", row_split, row_split2, row_split3)
+
+##############################################################
+##### (유니버셜) 함수 정리
+####################################################
+
+'''
+
+ 단항 유니버셜 함수
+
+    1. np.abs: 절대값
+    2. np.around: 0.5를 기준으로 올림 혹은 내림 ( 양수:올림, 음수:내림)
+    3. np.round: N 소수점 자릿수까지 반올림
+    4. np.rint: 가장 가까운 정수로 올림 혹은 내림
+    5. np.fix: 0 방향으로 가장 가까운 정수로 올림 혹은 내림
+    6. np.ceil: 각 원소보다 크거나 같은 가장 작은 정수값으로 올림
+    7. np.floor: 각 원소보다 작거나 같은 가장 큰 정수값으로 내림
+    8. np.trunc: 각 원소의 소수점 부분은 잘라버리고 정수값만 남김
+    9. np.sqrt: 제곱근
+    10. np.reciprocal : 각 요소의 역수
+'''
+
+
+import numpy as np
+# 단항 유니버셜 함수
+# 1. np.abs: 절대값
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("1. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("2. np.abs(arr): " , np.abs(arr)) # [4.62 2.19 0.   1.57 3.4  4.06]
+
+# 2. np.around: 0.5를 기준으로 올림 혹은 내림
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("3. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("4. np.around(arr): " , np.around(arr)) # [-5. -2.  0.  2.  3.  4.]
+
+# 3. np.round: N 소수점 자릿수까지 반올림
+arr = np.array([-4.62985, -2.19568, 0, 1.5754, 3.4056, 4.06898])
+print("5. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("6. np.round(arr, 1): " , np.round(arr, 1)) # [-4.6 -2.2  0.   1.6  3.4  4.1]
+print("6. np.round(arr, 3): " , np.round(arr, 3)) # [-4.63  -2.196  0.     1.575  3.406  4.069]
+
+# 4. np.rint: 가장 가까운 정수로 올림 혹은 내림
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("7. original: ", arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("8. np.rint(arr): ", np.rint(arr)) # [-5. -2.  0.  2.  3.  4.]
+
+# 5. np.fix: 0 방향으로 가장 가까운 정수로 올림 혹은 내림
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("9. original: ", arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("10. np.fix(arr): ", np.fix(arr)) # [-4. -2.  0.  1.  3.  4.]
+
+# 6. np.ceil: 각 원소보다 크거나 같은 가장 작은 정수값으로 올림
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("11. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("12. np.ceil(arr): " , np.ceil(arr)) # [-4. -2.  0.  2.  4.  5.]
+
+# 7. np.floor: 각 원소보다 작거나 같은 가장 큰 정수값으로 내림
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("13. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("14. np.floor(arr): " , np.floor(arr)) # [-5. -3.  0.  1.  3.  4.]
+
+# 8. np.trunc: 각 원소의 소수점 부분은 잘라버리고 정수값만 남김
+arr = np.array([-4.62, -2.19, 0, 1.57, 3.40, 4.06])
+print("15. original: " , arr) # [-4.62 -2.19  0.    1.57  3.4   4.06]
+print("16. np.trunc(arr): " , np.trunc(arr)) # [-4. -2.  0.  1.  3.  4.]
+
+# 9. np.sqrt: 제곱근
+arr = np.array([1,4,9,16,25])
+print("17. original: " ,arr) # [ 1  4  9 16 25]
+print("18. np.sqrt(arr): " , np.sqrt(arr)) # [1. 2. 3. 4. 5.]
+
+# 10. np.reciprocal : 각 요소의 역수
+print("19. np.reciprocal 1: ", np.reciprocal([1,2,3]))  # 1/1 1/2 1/3 ==> [1 0 0]
+print("20. np.reciprocal 2: ", np.reciprocal([1.,2.,3.]))  # 1/1 1/2 1/3 ==> [1.  0.5 0.33333333]
+
+
+'''
+
+ 이항 유니버셜 함수
+
+    1. np.add:  + 연산과 동일
+    2. np.subtract:  - 연산과 동일
+    3. np.multiply:  * 연산과 동일
+    4. np.divide:  / 연산과 동일
+    5. np.floor_divide:  // 연산과 동일 ( 몫 연산 )
+    6. np.mod:  % 연산과 동일 ( 나머지 연산 )
+    7. np.maximum  인덱스별로 큰 값 반환
+
+'''
+import numpy as np
+
+
+# 1. np.add:  + 연산과 동일
+b = np.array([1, 2, 3, 4])
+print("1. original: " , b ) # [1 2 3 4]
+print("2. b+b: " , b+b ) # [2 4 6 8]
+print("3. np.add(b,b): " , np.add(b,b) ) # [2 4 6 8]
+
+# 2. np.subtract:  - 연산과 동일
+b = np.array([1, 2, 3, 4])
+print("1. original: " , b ) # [1 2 3 4]
+print("2. b*2-b: " , b*2-b ) # [1 2 3 4]
+print("3. np.subtract(b*2,b): " , np.subtract(b*2,b) ) # [1 2 3 4]
+
+# 3. np.multiply:  * 연산과 동일
+b = np.array([1, 2, 3, 4])
+print("1. original: " , b ) # [1 2 3 4]
+print("2. b*b: " , b*b ) # [ 1  4  9 16]
+print("3. np.multiply(b,b): " , np.multiply(b,b) ) # [ 1  4  9 16]
+
+# 4. np.divide:  / 연산과 동일
+b = np.array([1, 2, 3, 4])
+print("1. original: " , b ) # [1 2 3 4]
+print("2. b/b: " , b/b ) # [1. 1. 1. 1.]
+print("3. np.divide(b,b): " , np.divide(b,b) ) # [1. 1. 1. 1.]
+
+# 5. np.floor_divide:  // 연산과 동일 ( 몫 연산 )
+b = np.array([5,6,7,8])
+b2 = np.array([3,3,3,3])
+print("1. original: " , b ) # [5 6 7 8]
+print("2. b//b2: " , b//b2 ) # [1 2 2 2]
+print("3. np.floor_divide(b,b): " , np.floor_divide(b,b2) ) # [1 2 2 2]
+
+# 6. np.mod:  % 연산과 동일 ( 나머지 연산 )
+b = np.array([5,6,7,8])
+b2 = np.array([3,3,3,3])
+print("1. original: " , b ) # [5 6 7 8]
+print("2. b%b2: " , b%b2 ) # [2 0 1 2]
+print("3. np.mod(b,b2): " , np.mod(b,b2) ) # [2 0 1 2]
+print("4. np.remainder(b,b2): " , np.remainder(b,b2) ) # [2 0 1 2]
+
+# 7. np.maximum  인덱스별로 큰 값 반환
+b = np.array([5,6,7,8])
+b2 = np.array([1,9,6,8])
+print("1. original: " , b ) # [5 6 7 8]
+print("2. np.maximum(b,b2): " , np.maximum(b,b2) ) # [5 9 7 8]
+print("3. np.minimum(b,b2): " , np.minimum(b,b2) ) #  [1 6 6 8]
+print("4. np.greater(b,b2): " , np.greater(b,b2) ) #  [ True False  True False]
+print("5. np.greater_equal(b,b2): " , np.greater_equal(b,b2) ) #  [ True False  True  True]
+print("6. np.less(b,b2): " , np.less(b,b2) ) #  [False  True False False]
+print("7. np.less_equal(b,b2): " , np.less_equal(b,b2) ) #  [False  True False  True]
+print("8. np.equal(b,b2): " , np.equal(b,b2) ) #  [False False False  True]
+print("9. np.not_equal(b,b2): " , np.not_equal(b,b2) ) #  [ True  True  True False]
+
+# 8. np.power : 제곱
+print("1. np.power:" , np.power(2, 3))  # 8
+
+'''
+
+ * 문자열 범용 함수
+
+   1) 문법
+
+       np.char.문자열함수
+
+      https://numpy.org/devdocs/reference/routines.char.html#module-numpy.char
+
+   2) 종류
+
+      - np.char.add
+      - np.char.multiply
+      - np.char.capitalize
+      - np.char.lower
+      - np.char.swapcase
+      - np.char.center
+      - np.char.ljust
+      - np.char.rjust
+      - np.char.encode
+      - np.char.decode
+      - np.char.join
+      - np.char.strip
+      - np.char.split
+      - np.char.replace
+      - np.char.find
+      - np.char.count
+      - np.char.startswith
+      - np.char.endswith
+      - np.char.equal
+      - np.char.isdigit
+      - np.char.islower
+      - np.char.isupper
+      - np.char.rjust
+      - np.char.ljust
+
+'''
+
+import numpy as np
+
+# 1. np.char.add
+x1 = np.array(['Hello', 'Say'], dtype=str)
+x2 = np.array([' world', ' something'], dtype=str)
+out = np.char.add(x1, x2)
+print("1. np.char.add(x1,x2):", out) # ['Hello world' 'Say something']
+
+# 2. np.char.multiply
+x = np.array(['Hello ', 'Say '], dtype=str)
+out = np.char.multiply(x, 3)
+print("2. np.char.multiply(x, 3):", out) # ['Hello Hello Hello ' 'Say Say Say ']
+
+# 2. np.char.함수
+x = np.array(['heLLo woRLd', 'Say sOmething'], dtype=str)
+capitalized = np.char.capitalize(x)
+lowered = np.char.lower(x)
+uppered = np.char.upper(x)
+swapcased = np.char.swapcase(x)
+titlecased = np.char.title(x)
+print("3. capitalized =", capitalized) # ['Hello world' 'Say something']
+print("4. lowered =", lowered) # ['hello world' 'say something']
+print("5. uppered =", uppered) #  ['HELLO WORLD' 'SAY SOMETHING']
+print("6. swapcased =", swapcased) # ['HEllO WOrlD' 'sAY SoMETHING']
+print("7. titlecased =", titlecased) # ['Hello World' 'Say Something']
+
+# 3. np.char.center,  np.char.ljust, np.char.rjust
+x = np.array(['hello world', 'say something'], dtype=str)
+centered = np.char.center(x, 20, fillchar='_')
+left = np.char.ljust(x, 20, fillchar='_')
+right = np.char.rjust(x, 20, fillchar='_')
+
+print("8. centered =", centered) # ['____hello world_____' '___say something____']
+print("9. left =", left)       # ['hello world_________' 'say something_______']
+print("10. right =", right)    # ['_________hello world' '_______say something']
+
+# 4. np.char.encode,  np.char.decode
+x = np.array(['hello world', 'say something'], dtype=str)
+encoded = np.char.encode(x, 'cp500')
+decoded = np.char.decode(encoded,'cp500')
+print("11. encoded =", encoded) # b'\x88\x85\x93\x93\x96@\xa6\x96\x99\x93\x84'
+print("12. decoded =", decoded) # ['hello world' 'say something']
+
+# 5. np.char.join
+x = np.array(['hello world', 'say something'], dtype=str)
+out = np.char.join(",", x)
+print("13. join =", out)  # ['h,e,l,l,o, ,w,o,r,l,d' 's,a,y, ,s,o,m,e,t,h,i,n,g']
+
+x = np.array("hello", dtype=str)
+out = np.char.join(",", x)
+print("13. join =", out) # h,e,l,l,o
+
+x = np.array([1,2,3], dtype=str)
+out = np.char.join(",", x)
+print("13. join =", out) # ['1' '2' '3']
+
+# 5. np.char.strip => 기본은 공백제거
+x = np.array(['   hello world   ', '\tsay something\n'], dtype=str)
+stripped = np.char.strip(x)
+lstripped = np.char.lstrip(x)
+rstripped = np.char.rstrip(x)
+print("14. stripped =", stripped) # ['hello world' 'say something']
+print("15. lstripped =", lstripped) # ['hello world   ' 'say something\n']
+print("16. rstripped =", rstripped) # ['   hello world' '\tsay something']
+
+x =np.array(['aAaAaA', '  aA  ', 'abBABba'])
+print("16. ", np.char.strip(x, 'a')) # ['AaAaA' '  aA  ' 'bBABb']
+print("16. ", np.char.lstrip(x, 'a')) # ['AaAaA' '  aA  ' 'bBABba']
+print("16. ", np.char.rstrip(x, 'a')) # ['aAaAaA' '  aA  ' 'abBABb']
+
+# 6. np.char.split ==> 기본은 공백으로 분리
+x = np.array(['Hello my name is John'], dtype=str)
+out = np.char.split(x)
+print("17. split =", out, out[0]) # [list(['Hello', 'my', 'name', 'is', 'John'])] Hello
+
+x = np.array(['He/llo/m/ynameisJ/ohn'], dtype=str)
+out = np.char.split(x, '/')
+print("17. split =", out, out[0])
+
+# 7. np.char.replace ==> 기본적으로 모두 변경됨. count지정하여 변경갯수 설정가능
+x = np.array(['John Hello my name is John'], dtype=str)
+out = np.char.replace(x, "John", "Jim", count=1)
+print("18. replace =", out) # ['Hello my name is Jim']
+print()
+
+
+# 8. np.char.find
+x = np.array(['hello world', 'say something'], dtype=str)
+out = np.char.find(x, 'e')  # 'e' 문자의 인덱스 값 반환
+print("19. find =", out) # [1 7]
+
+# 9. np.char.count
+x = np.array(['Hello', 'my', 'name', 'is', 'Lily'], dtype=str)
+out = np.char.count(x, "l")
+print("20. count =", out) # [2 0 0 0 1]
+
+# 10. np.char.startswith
+x = np.array(['he', 'his', 'him', 'his'], dtype=str)
+out = np.char.startswith(x, "hi")
+print("21. startswith =", out) # [False  True  True  True]
+
+# 11. np.char.endswith
+x = np.array(['he', 'his', 'him', 'his'], dtype=str)
+out = np.char.endswith(x, "s")
+print("22. endswith =", out) # [False  True False  True]
+
+# 12. np.char.equal , np.char.not_equal
+x1 = np.array(['Hello', 'my', 'name', 'is', 'John'], dtype=str)
+x2 = np.array(['Hello', 'my', 'name', 'is', 'Jim'], dtype=str)
+out = np.char.equal(x1, x2)
+print(out)  # [ True  True  True  True False]
+
+x1 = np.array(['Hello', 'my', 'name', 'is', 'John'], dtype=str)
+x2 = np.array(['Hello', 'my', 'name', 'is', 'Jim'], dtype=str)
+out = np.char.not_equal(x1, x2)
+print(out)  # [False False False False  True]
+
+#  13. isdigit, islower, isupper
+x = np.array(['Hello', 'I', 'am', '20', 'years', 'old'], dtype=np.str)
+out1 = np.char.isdigit(x)
+out2 = np.char.islower(x)
+out3 = np.char.isupper(x)
+out4 = np.char.isalpha(x)
+print("Digits only =", out1) # [False False False  True False False]
+print("Lower cases only =", out2)  # [False False  True False  True  True]
+print("Upper cases only =", out3)  # [False  True False False False False]
+print("Alpha cases only =", out4) # [ True  True  True False  True  True]
+
+
+
+

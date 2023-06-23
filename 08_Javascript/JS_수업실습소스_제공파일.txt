@@ -1,0 +1,257 @@
+####################################################
+### Javascript
+####################################################
+
+
+// 1. JS 사용방법 4가지
+// 1) body태그안의 임의의 위치
+// 2) body태그안의 마지막 위치
+// 3) head태그안
+// 4) 외부파일
+
+
+
+// 2. JS 데이터 타입 종류
+<script type="text/javascript">
+
+    //1. 기본형 데이터
+	console.log("수치데이터(정수):", 20 );
+	console.log("수치데이터(실수):", 3.14 );
+	console.log("문자데이터:", "홍길동" );
+	console.log("문자데이터:", '홍길동' );
+	console.log("논리데이터:", true , false );
+	console.log("널(null):", null );
+	console.log("undefined:", undefined );
+	console.log("NaN:", NaN );
+	
+    //2. 참조형 데이터 ( 객체 데이터 의미,종류: 배열객체,함수객체,JSON객체 )
+    console.log("배열객체(JSON표기법):", [10,20,30] );
+    console.log("함수객체:", function(){} );
+    console.log("JSON객체(JSON표기법):", {"name":"홍길동","age":20} );
+    
+</script>
+
+
+
+// 3. 변수 종류
+
+// 1) var 키워드
+	/*
+	  변수 선언시 사용하며 변수명 중복 사용 가능
+	  블록 스코프가 아닌 함수 스코프(function scope)를 따른다.
+	  호이스팅(hoisting) 되어 처리된다.
+
+	 */
+
+
+// 2) let 키워드
+	/*
+	  var 키워드의 문제점 해결 목적으로 등장, 변수명 중복 사용 불가
+	  let 키워드를 사용하면 함수 스코프가 아닌 블록 스코프를 따른다.
+	  let 변수는 호이스팅(hoisting)되지 않는다.
+	 */
+
+
+// 4. 데이터 종류 알아보기
+   // typeof 변수명  ==> 결과를 문자열로 
+
+
+ 
+// 5. 상수
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+// 6. 연산자
+
+// 1) 산술연산자
+    console.log("값 더하기:" , 10+5);
+    console.log("값 빼기:" , 10-5);  
+    console.log("값 곱하기:" , 10 * 5);
+    console.log("값 나누기:" , 10 / 3); // 3.3333
+    console.log("값 나누기해서 나머지:" , 10 % 3); 
+ 
+
+// 2) 대입연산자
+        var n = 10; 
+	n += 5; //n= n+5;
+	console.log(n);
+	n -= 4; // n = n-4;
+	console.log(n);
+	n *= 4; // n = n*4;
+	console.log(n);
+	n /= 4; // n = n/4;
+	console.log(n);
+	n %= 4; // n = n%4;
+	console.log(n);
+// 3) 비교연산자
+        var a = 10;
+	var b = 7;
+	
+	console.log("a와 b가 같냐?", a == b); 
+	console.log("a가 b보다  크냐?", a > b);
+	console.log("a가 b보다  같거나 크냐?", a >= b);
+	console.log("a가 b보다  작냐?", a < b);
+	console.log("a가 b보다  작거나 크냐?", a <= b);
+	console.log("a와 b가 같지 않냐?", a != b); 
+
+        /*
+	      자바스크립트에서 같냐?
+	    1) == (equal 연산자) ,  !=
+	      : 값만 비교
+	    2) === (identical 연산자)  !== 
+	      :값과 타입까지 비교
+	*/
+
+// 4) 논리연산자
+        console.log(true || true); //true
+	console.log(true || false); //true
+	console.log(false || true); //true
+	console.log(false || false); //false
+
+	console.log(true && true); //true
+	console.log(true && false); //false
+	console.log(false && true); //false
+	console.log(false && false); //false
+
+	console.log(!true);  // false
+	console.log(!false); // true
+
+	/*
+           다음의 5가지는 항상 논리값의 false로 처리한다.
+	     역으로 5가지가 아닌 것은 true로 처리한다.
+	     1) 0
+	     2) ""
+	     3) null
+	     4) undefined
+	     5) NaN
+	*/
+
+// 5) 증감연산자
+
+// 6) 3항 연산자
+      // 변수 = (조건식)?참:거짓;
+
+
+// 7) spread연산자
+   // spread 연산자:   ...배열|map
+ 
+
+// 7. 제어문
+
+ // 가. 조건문
+
+ // 나. 반복문
+    	/*
+	   for(초기값;조건식;증감식){
+		   문장1
+		   문장2
+	   }
+
+	  초기값;
+	  while(조건식){
+		  문장1
+		  문장2
+		  증감식;
+	  }
+
+	  초기값;
+	   do{
+		   문장1
+		   문장2
+		   증감식;		   
+	   }while(조건식);
+
+	  
+	   break문과 continue문
+
+	   for-in문과 for-of문
+	
+	*/
+
+
+
+// 8. Object - 데이터
+
+ //가. 문자열
+
+ //나. 수치
+
+ //다. 날짜
+
+ //라. 배열
+
+ //마. JSON 객체
+
+
+//9. BOM ( Browser Object Model )
+
+  //가. Screen 객체
+    var x = "Total Height: " + screen.height; 
+    var x2 = "Total Width: " + screen.width; 
+
+  //나. Navigator 객체
+	console.log(navigator);
+	console.log("appName:", navigator.appName);
+	console.log("version:", navigator.version);
+	console.log("cookieEnabled:", navigator.cookieEnabled);
+	console.log("language:", navigator.language);
+	console.log("onLine:", navigator.onLine);
+	console.log("userAgent:", navigator.userAgent);
+	console.log("userAgent2:", navigator["userAgent"]);
+
+  //다. Location 객체
+        function aaa(){
+		location.href="http://www.daum.net";
+	}
+	function bbb(){
+		location.reload();
+	}
+
+  //나. History 객체
+
+
+  //나. Window 객체
+
+
+
+# 10. 함수(function) 기본
+
+   //가. 함수선언식
+       function fun() {
+
+       }
+   //나. 함수표현식 ( 익명 함수 )
+
+       var fun = function() {
+   
+        }; 
+
+# 11. 함수(function) 심화
+  
+  //가. 일급객체
+  //나. default 파라미터
+  //다. rest 파라미터
+  //라. arrow 함수
+
+
+ 
+# 12. 이벤트 
+
+   ## 이벤트 객체
+   # event.preventDefault()
+   # event.stopPropagation()
+
+
+# 13. DOM ( Document Object Model )
+
+
+
+# 14. 객체분해할당 ( destructuring )
+
+# 15. template 리터럴
+
+# 16. Ajax ( Asynchronous Javascirpt and XML )
+
+  # httpRequest = new XMLHttpRequest();
